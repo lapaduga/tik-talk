@@ -10,7 +10,7 @@
 		grid-template-columns: 1fr 1fr;
 	}
 
-		@media (max-width: 500px) {
+	@media (max-width: 500px) {
 		grid-template-columns: none;
 	}
 }
@@ -32,4 +32,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+}
+
+.profile-card__description {
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 1.34;
 }
