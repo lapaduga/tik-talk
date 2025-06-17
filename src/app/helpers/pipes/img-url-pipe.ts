@@ -10,5 +10,4 @@ export class ImgUrlPipe implements PipeTransform {
 
     return `https://icherniakov.ru/yt-course/${value}`;
   }
-
 }

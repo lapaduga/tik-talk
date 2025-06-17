@@ -1,0 +1,19 @@
+.w-100 {
+	width: 100%;
+}
+
+.grid	{
+	display: grid;
+}
+
+.gap-16 {
+	gap: 16px;
+}
+
+.mt-32 {
+	margin-top: clamp(28px, 3vw, 32px);
+}
+
+.mt-60 {
+		margin-top: clamp(40px, 5vw, 60px);
+}
