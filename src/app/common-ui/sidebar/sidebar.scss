@@ -1,0 +1,88 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	padding: 20px 12px;
+	background-color: var(--dark-color);
+}
+
+.main-menu-list {
+	display: grid;
+	gap: 8px;
+}
+
+.menu-item {
+	padding: 8px 16px;
+	color: var(--light-color);
+	display: grid;
+	align-items: center;
+	grid-template-columns: 16px 1fr max-content;
+	gap: 12px;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 1.71;
+	text-align: left;
+	border-radius: 2px;
+
+	&:hover,
+	&:focus-visible {
+		background-color: var(--dark-hover-color);
+		color: var(--primary-color);
+	}
+}
+
+.to-subscribers {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--primary-color);
+}
+
+.to-subscribers-link {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
+.to-subscribers-icon {
+	width: 18px;
+	height: 18px;
+}
+
+.sidebar-footer {
+	margin-top: auto;
+	background-color: var(--dark-hover-color);
+	border-radius: 2px;
+	padding: 4px 16px;
+	display: grid;
+	grid-template-columns: 32px 1fr 16px;
+	gap: 12px;
+	align-items: center;
+}
+
+.footer-avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.username-text {
+	font-weight: 700;
+	color: var(--primary-color);
+}
+
+.settings-btn {
+	color: var(--primary-color);
+	display: grid;
+	place-content: center;
+}
+
+.settings-svg {
+	height: 14px;
+	width: 14px;
+}
+
+.logo-small {
+	flex: 0 0 61px;
+	height: 74px;
+	width: 61px;
+}

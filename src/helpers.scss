@@ -10,10 +10,33 @@
 	gap: 16px;
 }
 
+.mt-20 {
+	margin-top: 20px;
+}
+
 .mt-32 {
 	margin-top: clamp(28px, 3vw, 32px);
 }
 
 .mt-60 {
 		margin-top: clamp(40px, 5vw, 60px);
+}
+
+.mb-20 {
+	margin-bottom: 20px;
+}
+
+.ml-16 {
+	margin-left: 16px;
+}
+
+.svg-icon {
+	width: 16px;
+	height: 16px;
+}
+
+.medium-text {
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1.34;
 }
