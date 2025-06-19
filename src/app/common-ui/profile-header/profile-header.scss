@@ -1,0 +1,12 @@
+:host {
+	display: grid;
+	grid-template-columns: 112px 1fr;
+	gap: 24px;
+}
+
+.header-avatar {
+	width: 112px;
+	aspect-ratio: 1;
+	overflow: hidden;
+	border-radius: 50%;
+} 
