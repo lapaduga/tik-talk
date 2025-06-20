@@ -5,6 +5,7 @@
 	grid-template-columns: repeat(4, 1fr);
 	gap: 32px;
 	align-items: center;
+	background-color: var(--dark-color);
 
 	@media (max-width: 700px) {
 		grid-template-columns: 1fr 1fr;
@@ -17,6 +18,7 @@
 
 .avatar-name {
 	display: grid;
+	align-items: center;
 	grid-template-columns: 70px 1fr;
 	gap: 20px;
 }
@@ -26,6 +28,7 @@
 	height: 70px;
 	border-radius: 50%;
 	overflow: hidden;
+	object-fit: cover;
 }
 
 .profile-card__name {
