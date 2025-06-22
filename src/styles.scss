@@ -31,6 +31,7 @@ input {
 	--primary-color: #ae7aff;
 	--grey-color: #5f646d;
 	--dark-hover-color: #161616;
+	--light-transparent-color: color-mix(in oklab, var(--light-color), transparent 25%);
 }
 
 body {
@@ -88,6 +89,12 @@ img {
 	line-height: 1.71;
 	border: 1px solid var(--dark-color);
 	border-radius: 2px;
+
+	&_icon {
+		padding: 14px;
+		display: grid;
+		place-content: center;
+	}
 
 	&_shadow {
 		position: relative;
