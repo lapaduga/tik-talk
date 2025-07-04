@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, inject, Renderer2 } from '@angular
 import { PostInput } from "../post-input/post-input";
 import { PostComponent } from "../post/post.component";
 import { PostService } from '../../../data/services/post.service';
-import { firstValueFrom, fromEvent } from 'rxjs';
+import { firstValueFrom, fromEvent, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-post-feed',
@@ -16,10 +16,10 @@ export class PostFeed {
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
 
-  @HostListener('window.resize')
-  onWindowResize() {
-
-  }
+  /*   @HostListener('window:resize')
+    onWindowResize() {
+      this.resizeFeed();
+    } */
 
   constructor() {
     firstValueFrom(this.postService.fetchPosts());
@@ -27,10 +27,10 @@ export class PostFeed {
 
   ngAfterViewInit() {
     this.resizeFeed();
-
     fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
       .subscribe(() => {
-        
+        this.resizeFeed();
       });
   }
 
