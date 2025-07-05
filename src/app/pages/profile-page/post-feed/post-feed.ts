@@ -1,8 +1,14 @@
-import { Component, ElementRef, HostListener, inject, Renderer2 } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  Renderer2
+} from '@angular/core';
 import { PostInput } from "../post-input/post-input";
 import { PostComponent } from "../post/post.component";
 import { PostService } from '../../../data/services/post.service';
 import { firstValueFrom, fromEvent, debounceTime } from 'rxjs';
+import { ProfileService } from '../../../data/services/profile.service';
 
 @Component({
   selector: 'app-post-feed',
@@ -15,11 +21,7 @@ export class PostFeed {
   feed = this.postService.posts;
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
-
-  /*   @HostListener('window:resize')
-    onWindowResize() {
-      this.resizeFeed();
-    } */
+  profile = inject(ProfileService).me;
 
   constructor() {
     firstValueFrom(this.postService.fetchPosts());
@@ -37,6 +39,25 @@ export class PostFeed {
   resizeFeed() {
     const { top } = this.hostElement.nativeElement.getBoundingClientRect();
     const height = window.innerHeight - top - 48;
-    this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
+    this.r2.setStyle(this.hostElement.nativeElement, 'maxHeight', `${height}px`);
+  }
+
+  loadPosts() {
+    firstValueFrom(this.postService.fetchPosts())
+      .then(posts => {
+        this.feed.set(posts);
+      });
+  }
+
+  onCreatePost(postText: string) {
+    if (!postText) return;
+
+    firstValueFrom(this.postService.createPost({
+      title: 'Клевый пост',
+      content: postText,
+      authorId: this.profile()!.id
+    })).then(() => {
+      this.loadPosts();
+    });
   }
 }

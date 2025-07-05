@@ -9,7 +9,6 @@
 			<strong class="post-author">
 				{{ post.author.firstName }}
 				{{ post.author.lastName }}
-				<!-- <span class="post-created-at">{{ post.createdAt | date: 'HH:mm dd.MM.yyyy' }}</span> -->
 				<span class="post-created-at">{{ post.createdAt | timePassedSince }}</span>
 			</strong>
 		</div>
@@ -28,9 +27,7 @@
 			}
 		</div>
 		<app-post-input
-			(created)="onCreated()"
-			[postId]="post.id"
-			[isCommentInput]="true"
+			(created)="onCreated($event)"
 		></app-post-input>
 	</main>
 }
