@@ -5,6 +5,7 @@ import { ProfilePage } from './pages/profile-page/profile-page';
 import { Layout } from './common-ui/layout/layout';
 import { canActivateAuth } from './auth/access.guard';
 import { SettingsPage } from './pages/settings-page/settings-page';
+import { chatsRoutes } from './pages/chats-page/chatsRoutes';
 
 export const routes: Routes = [
 	{
@@ -13,6 +14,7 @@ export const routes: Routes = [
 			{ path: 'search', component: SearchPage },
 			{ path: 'profile/:id', component: ProfilePage },
 			{ path: 'settings', component: SettingsPage },
+			{ path: 'chats', loadChildren: () => chatsRoutes },
 		],
 		canActivate: [canActivateAuth]
 	},

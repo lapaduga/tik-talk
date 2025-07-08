@@ -1,0 +1,39 @@
+:host {
+	display: grid;
+	grid-template-columns: 32px 1fr;
+	gap: 12px;
+
+	&.is-mine {
+		grid-template-columns: auto 32px;
+		justify-self: end;
+		text-align: right;
+
+		.message-container {
+			order: -1;
+		}
+
+		.message-text {
+			--gradient-rotation: -135deg;
+			--gradient-x-pos: 100%;
+
+			background-color: var(--primary-color);
+			color: var(--dark-color);
+		}
+	}
+}
+
+.message-text {
+	--gradient-rotation: 135deg;
+	--gradient-x-pos: 0%;
+
+	padding: 8px 16px;
+	background-color: var(--message-color);
+	font-weight: 500;
+	color: var(--light-color);
+	display: inline-block;
+	mask:
+		linear-gradient(#000 0 0),
+		linear-gradient(var(--gradient-rotation), #000 50%, #0000 0) border-box 100% 100% / 10px 10px no-repeat;
+	mask-position: var(--gradient-x-pos) 0%;
+	mask-composite: exclude;
+}

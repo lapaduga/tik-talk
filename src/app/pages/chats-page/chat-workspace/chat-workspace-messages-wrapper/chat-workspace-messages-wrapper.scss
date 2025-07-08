@@ -1,0 +1,11 @@
+:host {
+	display: grid;
+	padding: 16px 20px;
+	gap: 24px;
+	grid-template-rows: 1fr min-content;
+}
+
+.messages-wrapper {
+	display: grid;
+	gap: 12px;
+}

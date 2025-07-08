@@ -1,0 +1,13 @@
+@if (chat(); as chat) {
+	<app-avatar-circle
+		[avatarUrl]="chat.userFrom.avatarUrl"
+	></app-avatar-circle>
+	
+	<span class="last-message-wrapper">
+		<div class="chat-user">
+			<span class="medium-text">{{ chat.userFrom.firstName }} {{ chat.userFrom.lastName }}</span>
+			<span class="medium-text">{{ chat.createdAt }}</span>
+		</div>
+		<span class="medium-text">{{ chat.message ?? '...' }}</span>
+	</span>
+}

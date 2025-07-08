@@ -32,6 +32,10 @@ input {
 	--grey-color: #5f646d;
 	--dark-hover-color: #161616;
 	--light-transparent-color: color-mix(in oklab, var(--light-color), transparent 25%);
+	--dark-active-color: #161616;
+	--message-color: #404040;
+
+	--light-border: 1px solid var(--light-color);
 }
 
 body {
