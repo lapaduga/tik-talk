@@ -1,5 +1,5 @@
 import { Message } from './../../../../../data/interfaces/chats.interface';
-import { Component, HostBinding, input } from '@angular/core';
+import { Component, ElementRef, HostBinding, input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { AvatarCircle } from "../../../../../common-ui/avatar-circle/avatar-circle";
 import { DatePipe } from '@angular/common';
 
@@ -9,11 +9,27 @@ import { DatePipe } from '@angular/common';
   templateUrl: './chat-workspace-message.html',
   styleUrl: './chat-workspace-message.scss'
 })
-export class ChatWorkspaceMessage {
+export class ChatWorkspaceMessage implements OnChanges {
   message = input.required<Message>();
 
-  @HostBinding ('class.is-mine')
+  @ViewChild('messageContainer') messageContainer!: ElementRef;
+
+  @HostBinding('class.is-mine')
   get isMine() {
     return this.message().isMine;
+  }
+
+  ngOnChanges() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    if (this.messageContainer) {
+      const parent = this.messageContainer.nativeElement.closest('.messages-wrapper');
+
+      setTimeout(() => {
+        parent.scrollTop = parent.scrollHeight;
+      }, 30);
+    }
   }
 }

@@ -6,7 +6,7 @@
 	<span class="last-message-wrapper">
 		<div class="chat-user">
 			<span class="medium-text">{{ chat.userFrom.firstName }} {{ chat.userFrom.lastName }}</span>
-			<span class="medium-text">{{ chat.createdAt }}</span>
+			<span class="medium-text">{{ chat.createdAt | date: 'dd.MM.yyy':'+1000' }}</span>
 		</div>
 		<span class="medium-text">{{ chat.message ?? '...' }}</span>
 	</span>

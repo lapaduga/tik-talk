@@ -8,6 +8,11 @@
 		justify-self: end;
 		text-align: right;
 
+		.message-name-time {
+			justify-content: end;
+			flex-direction: row-reverse;
+		}
+
 		.message-container {
 			order: -1;
 		}
@@ -20,6 +25,11 @@
 			color: var(--dark-color);
 		}
 	}
+}
+
+.message-name-time {
+	display: flex;
+	gap: 4px;
 }
 
 .message-text {

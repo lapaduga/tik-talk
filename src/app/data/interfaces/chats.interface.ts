@@ -25,5 +25,10 @@ export interface LastMessageRes {
 	userFrom: Profile
 	message: string | null
 	createdAt: string
-  unreadMessages: number
+	unreadMessages: number
+}
+
+export interface SortedMessageObject {
+	date: string
+	messages: Message[]
 }
