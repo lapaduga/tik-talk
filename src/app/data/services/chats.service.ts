@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { Chat, LastMessageRes, Message, SortedMessageObject } from "../interfaces/chats.interface";
+import { Chat, LastMessageRes, Message, GroupedMessages } from "../interfaces/chats.interface";
 import { ProfileService } from "./profile.service";
 import { map } from 'rxjs';
 import { format, isToday, isYesterday } from 'date-fns';
@@ -15,10 +15,11 @@ export class ChatsService {
 	baseApiUrl = 'https://icherniakov.ru/yt-course/';
 	chatsUrl = `${this.baseApiUrl}chat/`;
 	messageUrl = `${this.baseApiUrl}message/`;
-	activeChatMessages = signal<Message[]>([]);
+	activeChatMessages = signal<GroupedMessages[]>([]);
 
 	private formatMessageDate(date: string): string {
 		const standardizedDate = `${date}Z`;
+
 		if (isToday(standardizedDate)) {
 			return 'Сегодня';
 		} else if (isYesterday(standardizedDate)) {
@@ -28,12 +29,29 @@ export class ChatsService {
 		}
 	}
 
-	createChat(userId: number) {
-		return this.http.post<Chat>(`${this.chatsUrl}${userId}`, {});
-	}
+	private getGroupedMessages(array: Message[]) {
+		const chatWithDates: any = {};
 
-	getMyChats() {
-		return this.http.get<LastMessageRes[]>(`${this.chatsUrl}get_my_chats/`);
+		array.forEach(message => {
+			const date = this.formatMessageDate(message.createdAt);
+
+			if (!(date in chatWithDates)) {
+				chatWithDates[date] = [];
+			}
+
+			chatWithDates[date].push(message);
+		});
+
+		const sortedPatchedMessages = [];
+
+		for (const key in chatWithDates) {
+			if (Object.prototype.hasOwnProperty.call(chatWithDates, key)) {
+				const element = chatWithDates[key];
+				sortedPatchedMessages.push({ date: key, messages: element })
+			}
+		}
+
+		return sortedPatchedMessages;
 	}
 
 	getChatById(chatId: number) {
@@ -47,30 +65,9 @@ export class ChatsService {
 					}
 				});
 
-				/* const chatWithDates: any = {};
+				const groupedMessages = this.getGroupedMessages(patchedMessages);
 
-				patchedMessages.forEach(message => {
-					const date = this.formatMessageDate(message.createdAt);
-
-					if (!(date in chatWithDates)) {
-						chatWithDates[date] = [];
-					}
-
-					chatWithDates[date].push(message);
-				});
-
-				const sortedPatchedMessages = [];
-
-				for (const key in chatWithDates) {
-					if (Object.prototype.hasOwnProperty.call(chatWithDates, key)) {
-						const element = chatWithDates[key];
-						sortedPatchedMessages.push({ date: key, messages: element })
-					}
-				}
-
-				console.log(sortedPatchedMessages); */
-
-				this.activeChatMessages.set(patchedMessages);
+				this.activeChatMessages.set(groupedMessages);
 
 				return {
 					...chat,
@@ -78,6 +75,14 @@ export class ChatsService {
 					messages: patchedMessages
 				}
 			}));
+	}
+
+	createChat(userId: number) {
+		return this.http.post<Chat>(`${this.chatsUrl}${userId}`, {});
+	}
+
+	getMyChats() {
+		return this.http.get<LastMessageRes[]>(`${this.chatsUrl}get_my_chats/`);
 	}
 
 	sendMessage(chatId: number, message: string) {

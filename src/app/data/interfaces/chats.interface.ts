@@ -28,7 +28,7 @@ export interface LastMessageRes {
 	unreadMessages: number
 }
 
-export interface SortedMessageObject {
+export interface GroupedMessages {
 	date: string
 	messages: Message[]
 }
