@@ -1,4 +1,4 @@
-<div class="messages-wrapper">
+<!-- <div class="messages-wrapper">
 	@for (message of messages(); track $index) {
 		<div class="center mb-32">
 			<strong class="date-label">{{ message.date }}</strong>
@@ -10,7 +10,15 @@
 				></app-chat-workspace-message>
 			}
 	}
-</div>
+</div> -->
+
+<div class="messages-wrapper">
+	@for (message of messages(); track message.id) {
+		<app-chat-workspace-message
+			[message]="message"
+		></app-chat-workspace-message>
+	}
+</div> 
 
 <app-message-input
 	(created)="onSendMessage($event)"

@@ -15,7 +15,7 @@ export class ChatsService {
 	baseApiUrl = 'https://icherniakov.ru/yt-course/';
 	chatsUrl = `${this.baseApiUrl}chat/`;
 	messageUrl = `${this.baseApiUrl}message/`;
-	activeChatMessages = signal<SortedMessageObject[]>([]);
+	activeChatMessages = signal<Message[]>([]);
 
 	private formatMessageDate(date: string): string {
 		const standardizedDate = `${date}Z`;
@@ -47,7 +47,7 @@ export class ChatsService {
 					}
 				});
 
-				const chatWithDates: any = {};
+				/* const chatWithDates: any = {};
 
 				patchedMessages.forEach(message => {
 					const date = this.formatMessageDate(message.createdAt);
@@ -68,14 +68,14 @@ export class ChatsService {
 					}
 				}
 
-				console.log(sortedPatchedMessages);
+				console.log(sortedPatchedMessages); */
 
-				this.activeChatMessages.set(sortedPatchedMessages);
+				this.activeChatMessages.set(patchedMessages);
 
 				return {
 					...chat,
 					companion: chat.userFirst.id === this.me()!.id ? chat.userSecond : chat.userFirst,
-					messages: sortedPatchedMessages
+					messages: patchedMessages
 				}
 			}));
 	}
