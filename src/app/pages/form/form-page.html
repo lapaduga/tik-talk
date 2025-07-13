@@ -49,48 +49,73 @@
 				</label>
 			}
 
-			<div formGroupName="address">
+			<div class="flex justify-between">
 				<h5 class="h5 mb-16 center">Адрес доставки</h5>
-				<div class="two-columns">
-					<label class="tt-form-label">
-						<span class="tt-form-label__text">Город</span>
-						<input
-							type="text"
-							class="tt-form-input"
-							placeholder="Город"
-							formControlName="city"
-						>
-					</label>
-					<label class="tt-form-label">
-						<span class="tt-form-label__text">Улица</span>
-						<input
-							type="text"
-							class="tt-form-input"
-							placeholder="Улица"
-							formControlName="street"
-						>
-					</label>
-					<label class="tt-form-label">
-						<span class="tt-form-label__text">Дом</span>
-						<input
-							type="text"
-							class="tt-form-input"
-							placeholder="Дом"
-							formControlName="building"
-						>
-					</label>
-					<label class="tt-form-label">
-						<span class="tt-form-label__text">Квартира</span>
-						<input
-							type="text"
-							class="tt-form-input"
-							placeholder="Квартира"
-							formControlName="apartment"
-						>
-					</label>
+				<button type="button" class="btn" (click)="addAddress()">+</button>
+			</div>
+
+			@for (group of form.controls.addresses.controls; track group; let i = $index) {
+				<div [formGroup]="group">
+					<div class="two-columns">
+						<label class="tt-form-label">
+							<span class="tt-form-label__text">Город</span>
+							<input
+								type="text"
+								class="tt-form-input"
+								placeholder="Город"
+								formControlName="city"
+							>
+						</label>
+						<label class="tt-form-label">
+							<span class="tt-form-label__text">Улица</span>
+							<input
+								type="text"
+								class="tt-form-input"
+								placeholder="Улица"
+								formControlName="street"
+							>
+						</label>
+						<label class="tt-form-label">
+							<span class="tt-form-label__text">Дом</span>
+							<input
+								type="text"
+								class="tt-form-input"
+								placeholder="Дом"
+								formControlName="building"
+							>
+						</label>
+						<label class="tt-form-label">
+							<span class="tt-form-label__text">Квартира</span>
+							<input
+								type="text"
+								class="tt-form-input"
+								placeholder="Квартира"
+								formControlName="apartment"
+							>
+						</label>
+						<button
+							type="button"
+							class="btn grid-full-width"
+							(click)="deleteAddress(i)"
+							>Удалить</button>
+					</div>
 				</div>
+			}
+		</div>
+
+		<div [formGroup]="form.controls.feature">
+			<h6 class="h6 mb-16 center">Дополниьтельные услуги</h6>
+
+			<div class="grid gap-8 justify-start">
+				@for (control of form.controls.feature.controls | keyvalue: sort; track control; let i = $index) {
+					<label class="pointer">
+						{{ features[i].label }}
+						<input type="checkbox" [formControlName]="control.key">
+					</label>
+				}
 			</div>
 		</div>
+
 		<button
 			class="btn btn_shadow w-100"
 			type="submit"

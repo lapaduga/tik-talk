@@ -2,8 +2,16 @@
 	width: 100%;
 }
 
-.grid	{
+.grid {
 	display: grid;
+}
+
+.grid-full-width {
+	grid-column: 1/-1;
+}
+
+.gap-8 {
+	gap: 8px;
 }
 
 .gap-16 {
@@ -19,7 +27,7 @@
 }
 
 .mt-60 {
-		margin-top: clamp(40px, 5vw, 60px);
+	margin-top: clamp(40px, 5vw, 60px);
 }
 
 .mb-4 {
@@ -90,4 +98,20 @@
 
 .h-full {
 	height: 100%;
+}
+
+.flex {
+	display: flex;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-start {
+	justify-content: start;
+}
+
+.pointer {
+	cursor: pointer;
 }
