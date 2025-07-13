@@ -9,6 +9,11 @@
 	padding: 0;
 }
 
+::-webkit-calendar-picker-indicator {
+	background: var(--primary-color);
+	cursor: pointer;
+}
+
 ul,
 ol {
 	list-style: none;
@@ -214,9 +219,17 @@ textarea.tt-form-input {
 		color: color-mix(in oklab, var(--light-color), transparent 25%);
 	}
 
-		&.ng-invalid.ng-touched {
+	&.ng-invalid.ng-touched {
 		border-bottom: 1px solid tomato;
 	}
+
+	&.ng-pending {
+		border: 2px dashed var(--primary-color);
+	}
+}
+
+div.ng-touched.ng-invalid input[type="date"] {
+	border-bottom: 1px solid tomato;
 }
 
 .regular-form-wrapper {

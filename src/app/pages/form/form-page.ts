@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormControl, FormGroup, FormRecord, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, FormRecord, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MockService } from './mock-service/mock.service';
 import { Address, Feature } from './interfaces/interfaces';
+import { NameValidator } from './name.validator';
 
 enum ReceiverType {
   INDIVIDUAL = 'INDIVIDUAL',
@@ -19,6 +20,37 @@ function getAddressForm(initialValue: Address = {}) {
   })
 }
 
+function validateStartWith(forbiddenLetter: string): ValidatorFn {
+  return (control: AbstractControl) => {
+    return control.value.startsWith(forbiddenLetter)
+      ? {
+        startsWith: {
+          message: `${forbiddenLetter} - запрещено вводить первой буквой!`,
+        }
+      }
+      : null;
+  }
+}
+
+function validateDateRange({ fromControlName, toControlName }: { fromControlName: string, toControlName: string }) {
+  return (control: AbstractControl) => {
+    const fromControl = control.get(fromControlName);
+    const toControl = control.get(toControlName);
+
+    if (!fromControl || !toControl) return null;
+
+    const fromDate = new Date(fromControl.value);
+    const toDate = new Date(toControl.value);
+
+    if (fromDate && toDate && fromDate > toDate) {
+      toControl.setErrors({ dateRange: { message: 'Дата начала не может быть позднее даты конца.' } });
+      return { dateRange: { message: 'Дата начала не может быть позднее даты конца.' } };
+    }
+
+    return null;
+  }
+}
+
 @Component({
   selector: 'app-form',
   imports: [ReactiveFormsModule, CommonModule],
@@ -29,14 +61,23 @@ export class FormPage {
   ReceiverType = ReceiverType;
   mockService = inject(MockService);
   features: Feature[] = [];
+  nameValidator = inject(NameValidator);
 
   form = new FormGroup({
     type: new FormControl<ReceiverType>(ReceiverType.INDIVIDUAL),
-    name: new FormControl<string>('', Validators.required),
+    name: new FormControl<string>('', {
+      validators: [Validators.required],
+      asyncValidators: [this.nameValidator.validate.bind(this.nameValidator)],
+      updateOn: 'blur'
+    }),
     lastName: new FormControl<string>(''),
     inn: new FormControl<string>(''),
     addresses: new FormArray([getAddressForm()]),
     feature: new FormRecord({}),
+    dateRange: new FormGroup({
+      from: new FormControl<string>(''),
+      to: new FormControl<string>(''),
+    }, validateDateRange({ fromControlName: 'from', toControlName: 'to' })),
   });
 
   constructor() {

@@ -23,6 +23,14 @@
 				>
 			</label>
 
+			@if (form.controls.name.touched && form.controls.name.hasError('nameValid')) {
+				<small>{{ form.controls.name.getError('nameValid')?.message }}</small>
+			}
+
+			@if (form.controls.name.touched && form.controls.name.hasError('startsWith')) {
+				<small>{{ form.controls.name.getError('startsWith')?.message }}</small>
+			}
+
 			@if (form.controls.name.touched && form.controls.name.hasError('required')) {
 				<small>Это обязательное поле</small>
 			}
@@ -47,6 +55,30 @@
 					formControlName="inn"
 					>
 				</label>
+			}
+
+			<h5 class="h5 mb-16">Период доставки</h5>
+			<div class="two-columns" formGroupName="dateRange">
+				<label class="tt-form-label">
+					<span class="tt-form-label__text">От</span>
+					<input
+						type="date"
+						class="tt-form-input"
+						formControlName="from"
+					>
+				</label>
+				<label class="tt-form-label">
+					<span class="tt-form-label__text">До</span>
+					<input
+						type="date"
+						class="tt-form-input"
+						formControlName="to"
+					>
+				</label>
+			</div>
+
+			@if (form.controls.dateRange.touched && form.controls.dateRange.hasError('dateRange')) {
+				<small>{{ form.controls.dateRange.getError('dateRange')?.message }}</small>
 			}
 
 			<div class="flex justify-between">
@@ -104,8 +136,7 @@
 		</div>
 
 		<div [formGroup]="form.controls.feature">
-			<h6 class="h6 mb-16 center">Дополниьтельные услуги</h6>
-
+			<h6 class="h6 mb-16">Дополнительные услуги</h6>
 			<div class="grid gap-8 justify-start">
 				@for (control of form.controls.feature.controls | keyvalue: sort; track control; let i = $index) {
 					<label class="pointer">
