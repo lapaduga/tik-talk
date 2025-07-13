@@ -1,0 +1,101 @@
+<div class="h-full form-page-wrap">
+	<h4 class="h4 mb-16 center">Информация о доставке</h4>
+	<form
+		[formGroup]="form"
+		class="regular-form-wrapper"
+		(ngSubmit)="onSubmit($event)"
+	>
+		<div class="regular-form">
+			<label class="tt-form-label">
+				<span class="tt-form-label__text">Тип получателя</span>
+				<select class="tt-form-input" formControlName="type">
+					<option [value]="ReceiverType.INDIVIDUAL">Физическое лицо</option>
+					<option [value]="ReceiverType.LEGAL">Юридическое лицо</option>
+				</select>
+			</label>
+			<label class="tt-form-label">
+				<span class="tt-form-label__text">Имя</span>
+				<input
+					type="text"
+					class="tt-form-input"
+					placeholder="Имя"
+					formControlName="name"
+				>
+			</label>
+
+			@if (form.controls.name.touched && form.controls.name.hasError('required')) {
+				<small>Это обязательное поле</small>
+			}
+
+			@if (form.controls.type.value === ReceiverType.INDIVIDUAL) {
+				<label class="tt-form-label">
+					<span class="tt-form-label__text">Фамилия</span>
+					<input
+					type="text"
+					class="tt-form-input"
+					placeholder="Фамилия"
+					formControlName="lastName"
+					>
+				</label>
+			} @else {
+				<label class="tt-form-label">
+					<span class="tt-form-label__text">ИНН</span>
+					<input
+					type="text"
+					class="tt-form-input"
+					placeholder="ИНН"
+					formControlName="inn"
+					>
+				</label>
+			}
+
+			<div formGroupName="address">
+				<h5 class="h5 mb-16 center">Адрес доставки</h5>
+				<div class="two-columns">
+					<label class="tt-form-label">
+						<span class="tt-form-label__text">Город</span>
+						<input
+							type="text"
+							class="tt-form-input"
+							placeholder="Город"
+							formControlName="city"
+						>
+					</label>
+					<label class="tt-form-label">
+						<span class="tt-form-label__text">Улица</span>
+						<input
+							type="text"
+							class="tt-form-input"
+							placeholder="Улица"
+							formControlName="street"
+						>
+					</label>
+					<label class="tt-form-label">
+						<span class="tt-form-label__text">Дом</span>
+						<input
+							type="text"
+							class="tt-form-input"
+							placeholder="Дом"
+							formControlName="building"
+						>
+					</label>
+					<label class="tt-form-label">
+						<span class="tt-form-label__text">Квартира</span>
+						<input
+							type="text"
+							class="tt-form-input"
+							placeholder="Квартира"
+							formControlName="apartment"
+						>
+					</label>
+				</div>
+			</div>
+		</div>
+		<button
+			class="btn btn_shadow w-100"
+			type="submit"
+		>
+			Подтвердить
+		</button>
+	</form>
+</div>

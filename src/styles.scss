@@ -25,6 +25,15 @@ input {
 	background-color: transparent;
 }
 
+select {
+	cursor: pointer;
+	background: none;
+}
+
+option {
+	color: var(--dark-color);
+}
+
 :root {
 	--dark-color: #000000;
 	--light-color: #ffffff;
@@ -198,4 +207,27 @@ textarea.tt-form-input {
 	&::placeholder {
 		color: color-mix(in oklab, var(--light-color), transparent 25%);
 	}
+}
+
+.regular-form-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 32px;
+	border-radius: 2px;
+	border: 1px solid var(--light-color);
+	background-color: var(--dark-color);
+	height: 100%;
+}
+
+.regular-form {
+	display: grid;
+	gap: 20px;
+}
+
+.two-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
 }

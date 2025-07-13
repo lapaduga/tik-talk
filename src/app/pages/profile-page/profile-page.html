@@ -5,10 +5,13 @@
 		></app-profile-header>
 
 		@if(isMyPage()) {
-			<a class="btn to-settings-btn" [routerLink]="['/settings']">
-				Редактировать
-				<svg icon="settings" class="to-settings-icon svg-icon-small"></svg>
-			</a>
+			<div class="grid gap-16">
+				<a class="btn to-settings-btn" [routerLink]="['/settings']">
+					Редактировать
+					<svg icon="settings" class="to-settings-icon svg-icon-small"></svg>
+				</a>
+				<a [routerLink]="['/form']" class="btn to-settings-btn">Задание по формам</a>
+			</div>
 		} @else {
 			<button
 				type="button"

@@ -46,6 +46,10 @@
 	margin-left: 16px;
 }
 
+.p-24 {
+	padding: 24px;
+}
+
 .svg-icon-big {
 	width: 18px;
 	height: 18px;
@@ -78,4 +82,12 @@
 
 .center {
 	text-align: center;
+}
+
+.content-center {
+	place-content: center;
+}
+
+.h-full {
+	height: 100%;
 }

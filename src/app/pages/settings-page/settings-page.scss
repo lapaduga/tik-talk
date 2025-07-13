@@ -5,26 +5,3 @@
 	padding: 24px;
 	height: 100%;
 }
-
-.profile-form-wrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 20px;
-	padding: 32px;
-	border-radius: 2px;
-	border: 1px solid var(--light-color);
-	background-color: var(--dark-color);
-	height: 100%;
-}
-
-.profile-form {
-	display: grid;
-	gap: 20px;
-}
-
-.two-columns {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 20px;
-}
