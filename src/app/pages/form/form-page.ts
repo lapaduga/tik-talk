@@ -83,6 +83,7 @@ export class FormPage {
   onSubmit(event: SubmitEvent) {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
+    console.log(this.form.valid);
 
     if (this.form.invalid) return;
 

@@ -213,6 +213,10 @@ textarea.tt-form-input {
 	&::placeholder {
 		color: color-mix(in oklab, var(--light-color), transparent 25%);
 	}
+
+		&.ng-invalid.ng-touched {
+		border-bottom: 1px solid tomato;
+	}
 }
 
 .regular-form-wrapper {
