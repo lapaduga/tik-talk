@@ -1,0 +1,15 @@
+:host {
+  display: grid;
+}
+
+.header-avatar {
+  width: 112px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+:host.size-32 .header-avatar {
+  width: 32px;
+}

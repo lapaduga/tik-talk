@@ -1,0 +1,35 @@
+:host {
+  display: grid;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--dark-color);
+  border: 1px solid var(--light-color);
+  grid-template-columns: 32px 1fr 44px;
+  gap: 12px;
+  border-radius: 2px;
+
+  &.comment {
+    border: 1px dashed var(--light-color);
+  }
+}
+
+.hidden-textarea {
+  resize: none;
+  background-color: var(--dark-color);
+  border: none;
+  color: var(--light-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  height: 21px;
+
+  &::placeholder {
+    color: color-mix(in oklab, var(--light-color), transparent 25%);
+  }
+
+  &:hover,
+  &:focus-visible {
+    outline: 1px solid var(--primary-color);
+    border-radius: 2px;
+  }
+}

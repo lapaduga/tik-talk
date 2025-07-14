@@ -1,0 +1,65 @@
+@if (profile$ | async; as profile) {
+<header class="profile-page__header">
+  <app-profile-header [profile]="profile"></app-profile-header>
+
+  @if(isMyPage()) {
+  <div class="grid gap-16">
+    <a class="btn to-settings-btn" [routerLink]="['/settings']">
+      Редактировать
+      <svg icon="settings" class="to-settings-icon svg-icon-small"></svg>
+    </a>
+    <a [routerLink]="['/form']" class="btn to-settings-btn"
+      >Задание по формам</a
+    >
+  </div>
+  } @else {
+  <button
+    type="button"
+    class="btn to-settings-btn"
+    (click)="sendMessage(profile.id)"
+  >
+    Написать
+  </button>
+  }
+</header>
+
+<main class="profile-page__body">
+  <app-post-feed></app-post-feed>
+  <div>
+    <h3 class="h6 mb-16">Пдписчики</h3>
+    <div class="subscribers-wrapper mb-32">
+      @for (subscriber of subscribers$ | async; track subscriber.id) {
+      <a
+        class="subscriber-avatar-btn"
+        [routerLink]="['/profile', subscriber.id]"
+      >
+        @if (subscriber.avatarUrl) {
+        <img
+          [src]="subscriber.avatarUrl | imgUrl"
+          class="subscriber-avatar-img"
+          alt=""
+        />
+        } @else {
+        <img
+          src="/assets/svg/avatar-placeholder.svg"
+          class="subscriber-avatar-img"
+          alt=""
+        />
+        }
+      </a>
+      }
+      <a class="to-subscribers-search" [routerLink]="['/search']"></a>
+    </div>
+    @if (profile.stack.length) {
+    <h3 class="h6 mb-16">Навыки</h3>
+    <div class="tags mb-32">
+      @for (skill of profile.stack; track skill) {
+      <div class="tags__item">{{ skill }}</div>
+      }
+    </div>
+    }
+    <h3 class="h6 mb-16">О себе</h3>
+    <p class="medium-text">{{ profile.description }}</p>
+  </div>
+</main>
+}
