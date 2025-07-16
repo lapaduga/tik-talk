@@ -8,7 +8,7 @@ import {
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
+import { GlobalStoreService } from '@tt/shared';
 
 @Component({
   selector: 'app-post-input',
@@ -18,7 +18,7 @@ import { ProfileService } from '@tt/profile';
 })
 export class PostInput {
   r2 = inject(Renderer2);
-  profile = inject(ProfileService).me;
+  profile = inject(GlobalStoreService).me;
   postText = '';
 
   @Output() created = new EventEmitter();

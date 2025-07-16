@@ -1,12 +1,9 @@
 import { Routes } from '@angular/router';
-import { LoginPage } from './pages/login-page/login-page';
-import { SearchPage } from './pages/search-page/search-page';
-import { ProfilePage } from './pages/profile-page/profile-page';
-import { Layout } from './common-ui/layout/layout';
-import { canActivateAuth } from '@tt/auth';
-import { SettingsPage } from './pages/settings-page/settings-page';
-import { chatsRoutes } from './pages/chats-page/chatsRoutes';
-import { FormPage } from './pages/form/form-page';
+import { canActivateAuth, LoginPage } from '@tt/auth';
+import { chatsRoutes } from '@tt/chats';
+import { ProfilePage, SettingsPage, SearchPage } from '@tt/profile';
+import { FormPage } from '@tt/form';
+import { Layout } from '@tt/layout';
 
 export const routes: Routes = [
   {
