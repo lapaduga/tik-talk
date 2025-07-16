@@ -6,10 +6,10 @@ import {
   Message,
   GroupedMessages,
 } from '../interfaces/chats.interface';
-import { ProfileService } from './profile.service';
 import { map } from 'rxjs';
 import { format, isToday, isYesterday } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { ProfileService } from '@tt/profile';
 
 @Injectable({
   providedIn: 'root',

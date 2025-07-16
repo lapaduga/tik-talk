@@ -6,7 +6,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { delay, map, Observable } from 'rxjs';
-import { Profile } from '../../data/interfaces/profile.interface';
+import { Profile } from '../../../../../../libs/profile/src';
 
 @Injectable({
   providedIn: 'root',

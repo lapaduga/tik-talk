@@ -1,11 +1,11 @@
+import { SvgIconComponent } from '@tt/common-ui';
 import { Component, signal } from '@angular/core';
-import { SvgIcon } from '../../../common-ui/svg-icon/svg-icon';
 import { Dnd } from '../../../common-ui/directives/dnd';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-avatar-upload',
-  imports: [SvgIcon, Dnd, FormsModule],
+  imports: [SvgIconComponent, Dnd, FormsModule],
   templateUrl: './avatar-upload.html',
   styleUrl: './avatar-upload.scss',
 })

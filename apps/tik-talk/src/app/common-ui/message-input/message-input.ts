@@ -1,3 +1,4 @@
+import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
 import { NgIf } from '@angular/common';
 import {
   Component,
@@ -7,13 +8,11 @@ import {
   Renderer2,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ProfileService } from '../../data/services/profile.service';
-import { SvgIcon } from '../svg-icon/svg-icon';
-import { AvatarCircle } from '../avatar-circle/avatar-circle';
+import { ProfileService } from '@tt/profile';
 
 @Component({
   selector: 'app-message-input',
-  imports: [AvatarCircle, SvgIcon, FormsModule, NgIf],
+  imports: [AvatarCircleComponent, SvgIconComponent, FormsModule, NgIf],
   templateUrl: './message-input.html',
   styleUrl: './message-input.scss',
 })

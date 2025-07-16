@@ -1,4 +1,4 @@
-import { Profile } from './profile.interface';
+import { Profile } from "../../../../../../libs/profile/src";
 
 export interface Chat {
   id: number;

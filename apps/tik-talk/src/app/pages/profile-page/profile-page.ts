@@ -1,14 +1,13 @@
-import { ProfileService } from './../../data/services/profile.service';
 import { Component, inject, signal } from '@angular/core';
 import { ProfileHeader } from '../../common-ui/profile-header/profile-header';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { switchMap, firstValueFrom } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { SvgIcon } from '../../common-ui/svg-icon/svg-icon';
-import { ImgUrlPipe } from '../../helpers/pipes/img-url-pipe';
-import { PostFeed } from './post-feed/post-feed';
 import { ChatsService } from '../../data/services/chats.service';
+import { PostFeedComponent } from '@tt/posts';
+import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
+import { ProfileService } from '@tt/profile';
 
 @Component({
   selector: 'app-profile-page',
@@ -16,9 +15,9 @@ import { ChatsService } from '../../data/services/chats.service';
     ProfileHeader,
     AsyncPipe,
     RouterModule,
-    SvgIcon,
+    SvgIconComponent,
     ImgUrlPipe,
-    PostFeed,
+    PostFeedComponent,
   ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',

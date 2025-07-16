@@ -1,16 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { SvgIcon } from '../svg-icon/svg-icon';
 import { NgFor, AsyncPipe } from '@angular/common';
 import { SubscriberCard } from './subscriber-card/subscriber-card';
 import { RouterModule } from '@angular/router';
-import { ProfileService } from '../../data/services/profile.service';
 import { firstValueFrom } from 'rxjs';
-import { ImgUrlPipe } from '../../helpers/pipes/img-url-pipe';
+import { ProfileService } from '@tt/profile';
+import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-sidebar',
   imports: [
-    SvgIcon,
+    SvgIconComponent,
     NgFor,
     SubscriberCard,
     RouterModule,

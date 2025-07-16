@@ -1,9 +1,9 @@
 import { Component, effect, inject, ViewChild } from '@angular/core';
 import { ProfileHeader } from '../../common-ui/profile-header/profile-header';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProfileService } from '../../data/services/profile.service';
 import { firstValueFrom } from 'rxjs';
 import { AvatarUpload } from './avatar-upload/avatar-upload';
+import { ProfileService } from '@tt/profile';
 
 @Component({
   selector: 'app-settings-page',
