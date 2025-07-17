@@ -8,7 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ProfileService } from '@tt/profile';
+import { ProfileService } from '@tt/shared';
 
 @Component({
   selector: 'app-message-input',

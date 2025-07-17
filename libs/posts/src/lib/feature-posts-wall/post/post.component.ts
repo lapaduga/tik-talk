@@ -1,6 +1,6 @@
 import { firstValueFrom } from 'rxjs';
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { ProfileService } from '@tt/profile';
+import { ProfileService } from '@tt/shared';
 import { CommentComponent, PostInputComponent } from '../../ui';
 import { Post, PostComment, PostService } from '../../data';
 import { AvatarCircleComponent, SvgIconComponent, TimePassedSincePipe } from '@tt/common-ui';

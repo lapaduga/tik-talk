@@ -3,7 +3,7 @@ import { firstValueFrom, fromEvent, debounceTime } from 'rxjs';
 import { PostInputComponent } from '../../ui';
 import { PostService } from '../../data';
 import { PostComponent } from '../post/post.component';
-import { ProfileService } from '@tt/profile';
+import { ProfileService } from '@tt/shared';
 
 @Component({
   selector: 'app-post-feed',

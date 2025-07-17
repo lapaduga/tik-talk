@@ -5,7 +5,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { PostFeedComponent } from '@tt/posts';
 import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
-import { ProfileService } from '../../data';
+import { ProfileService } from '@tt/shared';
 import { ProfileHeader } from '../../ui/profile-header/profile-header';
 
 @Component({

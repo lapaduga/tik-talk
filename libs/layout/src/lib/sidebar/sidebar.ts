@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgFor, AsyncPipe } from '@angular/common';
 import { SubscriberCard } from './subscriber-card/subscriber-card';
 import { RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { ProfileService } from '@tt/profile';
+import { ProfileService } from '@tt/shared';
 import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
 
 @Component({
@@ -19,7 +19,7 @@ import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar {
+export class Sidebar implements OnInit {
   profileService = inject(ProfileService);
   subscribers$ = this.profileService.getSubscribersShortList();
   me = this.profileService.me;
