@@ -1,9 +1,8 @@
 import { Component, ElementRef, inject, Renderer2, AfterViewInit } from '@angular/core';
 import { firstValueFrom, fromEvent, debounceTime } from 'rxjs';
 import { PostInputComponent } from '../../ui';
-import { PostService } from '../../data';
 import { PostComponent } from '../post/post.component';
-import { ProfileService } from '@tt/shared';
+import { PostService, ProfileService } from '@tt/data-access';
 
 @Component({
   selector: 'app-post-feed',

@@ -9,7 +9,7 @@ import {
 import { map } from 'rxjs';
 import { format, isToday, isYesterday } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { ProfileService } from '@tt/shared';
+import { ProfileService } from '../index';
 
 @Injectable({
   providedIn: 'root',

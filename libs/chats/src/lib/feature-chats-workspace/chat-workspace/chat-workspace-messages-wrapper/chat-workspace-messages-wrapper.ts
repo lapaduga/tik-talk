@@ -1,9 +1,8 @@
 import { firstValueFrom, Subject, takeUntil, timer } from 'rxjs';
 import { Component, inject, input, OnDestroy, OnInit } from '@angular/core';
 import { ChatWorkspaceMessage } from './chat-workspace-message/chat-workspace-message';
-import { Chat } from '../../../data/interfaces/chats.interface';
-import { ChatsService } from '../../../data';
 import { MessageInput } from '../../../ui';
+import { Chat, ChatsService } from '@tt/data-access';
 
 @Component({
   selector: 'app-chat-workspace-messages-wrapper',

@@ -11,9 +11,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MockService } from '../data/services/mock.service';
-import { Address, Feature } from '../data/interfaces/interfaces';
 import { NameValidator } from './name.validator';
+import { Address, Feature, MockService } from '@tt/data-access';
 
 enum ReceiverType {
   INDIVIDUAL = 'INDIVIDUAL',

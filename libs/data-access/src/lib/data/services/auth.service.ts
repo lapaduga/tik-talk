@@ -2,14 +2,14 @@ import { throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs';
-import { TokenResponse } from './auth.interface';
+import { TokenResponse } from '../interfaces/auth.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Auth {
+export class AuthService {
   http = inject(HttpClient);
   router = inject(Router);
   cookieService = inject(CookieService);

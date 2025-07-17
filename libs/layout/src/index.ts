@@ -1,1 +1,2 @@
-export * from './lib/layout/layout';
+export { Layout } from './lib/layout/layout';
+export { Sidebar } from './lib/sidebar/sidebar';

@@ -4,7 +4,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from '@tt/auth';
+import { AuthService } from '@tt/data-access';
 import {
   BehaviorSubject,
   catchError,
@@ -14,7 +14,7 @@ import {
   throwError,
 } from 'rxjs';
 
-let isRefreshing$ = new BehaviorSubject<boolean>(false);
+const isRefreshing$ = new BehaviorSubject<boolean>(false);
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);

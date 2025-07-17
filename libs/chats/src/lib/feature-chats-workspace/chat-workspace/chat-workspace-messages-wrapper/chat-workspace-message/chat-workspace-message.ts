@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Message } from 'libs/chats/src/lib/data/interfaces/chats.interface';
+import { Message } from '@tt/data-access';
 
 @Component({
   selector: 'app-chat-workspace-message',

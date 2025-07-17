@@ -1,7 +1,7 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { ProfileCard } from '../../ui/index';
 import { ProfileFilters } from '../index';
-import { ProfileService } from '@tt/shared';
+import { ProfileService } from '@tt/data-access';
 
 @Component({
   selector: 'app-search-page',

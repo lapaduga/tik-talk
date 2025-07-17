@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Feature } from '../interfaces/interfaces';
+import { Feature } from '../interfaces/form.interface';
 
 @Injectable({
   providedIn: 'root',

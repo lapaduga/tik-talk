@@ -3,7 +3,7 @@ import { NgFor, AsyncPipe } from '@angular/common';
 import { SubscriberCard } from './subscriber-card/subscriber-card';
 import { RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { ProfileService } from '@tt/shared';
+import { ProfileService } from '@tt/data-access';
 import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
 
 @Component({
