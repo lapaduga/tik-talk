@@ -3,4 +3,5 @@ import { SettingsPage } from './lib/feature-profile-settings/settings-page/setti
 export * from './lib/feature-profile-page';
 export * from './lib/feature-profile-list';
 export * from './lib/ui';
+export * from './lib/store';
 export { SettingsPage }

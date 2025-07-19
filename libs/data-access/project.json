@@ -1,7 +1,7 @@
 {
-  "name": "shared",
+  "name": "data-access",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/src",
+  "sourceRoot": "libs/data-access/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],

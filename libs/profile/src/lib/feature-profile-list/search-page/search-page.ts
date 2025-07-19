@@ -1,7 +1,8 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { ProfileCard } from '../../ui/index';
 import { ProfileFilters } from '../index';
-import { ProfileService } from '@tt/data-access';
+import { Store } from '@ngrx/store';
+import { selectFilteredProfiles } from '../../store';
 
 @Component({
   selector: 'app-search-page',
@@ -10,7 +11,7 @@ import { ProfileService } from '@tt/data-access';
   styleUrl: './search-page.scss',
 })
 export class SearchPage {
-  profileService = inject(ProfileService);
+  store = inject(Store);
   cdr: any = inject(ChangeDetectorRef);
-  profiles = this.profileService.filteredProfiles;
+  profiles = this.store.selectSignal(selectFilteredProfiles);
 }
