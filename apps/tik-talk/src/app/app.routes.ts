@@ -12,6 +12,7 @@ import { FormPage } from '@tt/form';
 import { Layout } from '@tt/layout';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import { postsFeature, PostsEffects } from '@tt/posts';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,14 @@ export const routes: Routes = [
           provideEffects(ProfileEffects)
         ]
       },
-      { path: 'profile/:id', component: ProfilePage },
+      {
+        path: 'profile/:id',
+        component: ProfilePage,
+        providers: [
+          provideState(postsFeature),
+          provideEffects(PostsEffects)
+        ]
+      },
       { path: 'settings', component: SettingsPage },
       { path: 'chats', loadChildren: () => chatsRoutes },
       { path: 'form', component: FormPage },

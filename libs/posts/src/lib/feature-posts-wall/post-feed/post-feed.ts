@@ -1,8 +1,10 @@
-import { Component, ElementRef, inject, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, inject, Renderer2, AfterViewInit, Signal, OnInit } from '@angular/core';
 import { firstValueFrom, fromEvent, debounceTime } from 'rxjs';
 import { PostInputComponent } from '../../ui';
 import { PostComponent } from '../post/post.component';
-import { PostService, ProfileService } from '@tt/data-access';
+import { Post, PostService, ProfileService } from '@tt/data-access';
+import { Store } from '@ngrx/store';
+import { postsActions, selectPosts } from '../../store';
 
 @Component({
   selector: 'app-post-feed',
@@ -10,15 +12,16 @@ import { PostService, ProfileService } from '@tt/data-access';
   templateUrl: './post-feed.html',
   styleUrl: './post-feed.scss',
 })
-export class PostFeed implements AfterViewInit {
+export class PostFeed implements AfterViewInit, OnInit {
   postService = inject(PostService);
-  feed = this.postService.posts;
+  store = inject(Store);
+  feed: Signal<Post[]> = this.store.selectSignal(selectPosts);
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
   profile = inject(ProfileService).me;
 
-  constructor() {
-    firstValueFrom(this.postService.fetchPosts());
+  ngOnInit() {
+    this.store.dispatch(postsActions.fetchPosts());
   }
 
   ngAfterViewInit() {
@@ -40,11 +43,11 @@ export class PostFeed implements AfterViewInit {
     );
   }
 
-  loadPosts() {
+/*   loadPosts() {
     firstValueFrom(this.postService.fetchPosts()).then((posts) => {
       this.feed.set(posts);
     });
-  }
+  } */
 
   onCreatePost(postText: string) {
     if (!postText) return;
@@ -56,7 +59,8 @@ export class PostFeed implements AfterViewInit {
         authorId: this.profile()!.id,
       })
     ).then(() => {
-      this.loadPosts();
+      // this.loadPosts();
+      this.store.dispatch(postsActions.fetchPosts());
     });
   }
 }
