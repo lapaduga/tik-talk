@@ -20,4 +20,18 @@ export class PostsEffects {
 			map(posts => postsActions.postsLoaded({ posts: posts }))
 		);
 	});
+
+	createPost$ = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(postsActions.createPost),
+			switchMap(({ payload }) => {
+				return this.postService.createPost({
+					title: payload.title,
+					content: payload.content,
+					authorId: payload.authorId,
+				});
+			}),
+			map(() => postsActions.fetchPosts())
+		);
+	});
 }

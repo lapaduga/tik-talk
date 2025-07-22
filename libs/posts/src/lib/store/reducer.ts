@@ -15,10 +15,10 @@ export const postsFeature = createFeature({
 	reducer: createReducer(
 		initialState,
 		on(postsActions.postsLoaded,
-			(state, payload) => {
+			(state, { posts }) => {
 				return {
 					...state,
-					posts: payload.posts
+					posts
 				}
 			}
 		)

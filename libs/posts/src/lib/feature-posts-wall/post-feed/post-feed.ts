@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, Renderer2, AfterViewInit, Signal, OnInit } from '@angular/core';
-import { firstValueFrom, fromEvent, debounceTime } from 'rxjs';
+import { fromEvent, debounceTime } from 'rxjs';
 import { PostInputComponent } from '../../ui';
 import { PostComponent } from '../post/post.component';
 import { Post, PostService, ProfileService } from '@tt/data-access';
@@ -43,24 +43,15 @@ export class PostFeed implements AfterViewInit, OnInit {
     );
   }
 
-/*   loadPosts() {
-    firstValueFrom(this.postService.fetchPosts()).then((posts) => {
-      this.feed.set(posts);
-    });
-  } */
-
   onCreatePost(postText: string) {
     if (!postText) return;
 
-    firstValueFrom(
-      this.postService.createPost({
+    this.store.dispatch(postsActions.createPost({
+      payload: {
         title: 'Клевый пост',
         content: postText,
         authorId: this.profile()!.id,
-      })
-    ).then(() => {
-      // this.loadPosts();
-      this.store.dispatch(postsActions.fetchPosts());
-    });
+      }
+    }));
   }
 }
