@@ -23,6 +23,14 @@ export const profileFeature = createFeature({
 					profiles: payload.profiles
 				}
 			}
+		),
+		on(profileActions.filterEvents,
+			(state, { filters }) => {
+				return {
+					...state,
+					profileFilters: filters
+				};
+			}
 		)
 	)
 });
