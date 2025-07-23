@@ -1,13 +1,15 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
-import { Post } from "@tt/data-access";
+import { Post, PostComment } from "@tt/data-access";
 import { postsActions } from "./actions";
 
 export interface PostsState {
 	posts: Post[]
+	comments: PostComment[]
 }
 
 export const initialState: PostsState = {
-	posts: []
+	posts: [],
+	comments: []
 }
 
 export const postsFeature = createFeature({
