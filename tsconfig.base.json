@@ -21,7 +21,7 @@
       "@tt/layout": ["libs/layout/src/index.ts"],
       "@tt/posts": ["libs/posts/src/index.ts"],
       "@tt/profile": ["libs/profile/src/index.ts"],
-      "@tt/utils": ["libs/utils/src/index.ts"]
+      "@tt/experiment": ["libs/experiment/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

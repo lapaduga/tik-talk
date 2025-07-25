@@ -13,6 +13,7 @@ import { Layout } from '@tt/layout';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { postsFeature, PostsEffects } from '@tt/posts';
+import { ExperimentPage, ExperimentEffects, experimentFeature } from '@tt/experiment';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,14 @@ export const routes: Routes = [
       { path: 'settings', component: SettingsPage },
       { path: 'chats', loadChildren: () => chatsRoutes },
       { path: 'form', component: FormPage },
+      {
+        path: 'experiment',
+        component: ExperimentPage,
+        providers: [
+          provideState(experimentFeature),
+          provideEffects(ExperimentEffects)
+        ]
+      },
     ],
     canActivate: [canActivateAuth],
   },

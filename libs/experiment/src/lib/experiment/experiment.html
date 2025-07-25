@@ -1,0 +1,5 @@
+@for (item of subscriptions$ | async; track $index) {
+	<div>{{ item.firstName }}</div>
+<!-- 	<button class="btn" (click)="subscribeUser(item.id)">+</button>
+	<button class="btn" (click)="unsubscribeUser(item.id)">-</button> -->
+}
