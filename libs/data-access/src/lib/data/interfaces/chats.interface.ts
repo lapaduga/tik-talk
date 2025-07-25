@@ -14,7 +14,7 @@ export interface Message {
   personalChatId: number;
   text: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
   isRead: boolean;
   user?: Profile;
   isMine?: boolean;

@@ -20,3 +20,6 @@ export type {
 	CommentCreateDto,
 	Profile
 }
+
+export * from "./chat-ws-message.interface";
+export * from "./chat-ws-service.interface";

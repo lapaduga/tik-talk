@@ -1,3 +1,4 @@
+import { ChatsWsNativeService } from "./chats-ws-native.service";
 import { AuthService } from "./auth.service";
 import { ChatsService } from "./chats.service";
 import { GlobalStoreService } from "./global-store.service";
@@ -11,5 +12,6 @@ export {
 	GlobalStoreService,
 	MockService,
 	PostService,
-	ProfileService
+	ProfileService,
+	ChatsWsNativeService
 }

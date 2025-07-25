@@ -6,21 +6,79 @@ import {
   Message,
   GroupedMessages,
 } from '../interfaces/chats.interface';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { format, isToday, isYesterday } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { ProfileService } from '../index';
+import { AuthService, isNewMessage, ProfileService } from '../';
+import { ChatWsServiceInterface } from '../interfaces/chat-ws-service.interface';
+// import { ChatsWsNativeService } from './chats-ws-native.service';
+import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
+import { isUnreadMessage } from '../';
+import { ChatWSRxJsService } from './chat-ws-rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatsService {
   http = inject(HttpClient);
+  #authService = inject(AuthService);
   me = inject(ProfileService).me;
   baseApiUrl = 'https://icherniakov.ru/yt-course/';
   chatsUrl = `${this.baseApiUrl}chat/`;
   messageUrl = `${this.baseApiUrl}message/`;
   activeChatMessages = signal<GroupedMessages[]>([]);
+  // wsAdapter: ChatWsServiceInterface = new ChatsWsNativeService();
+  wsAdapter: ChatWsServiceInterface = new ChatWSRxJsService();
+
+  connectWs() {
+    return this.wsAdapter.connect({
+      url: `${this.baseApiUrl}chat/ws`,
+      token: this.#authService.token ?? '',
+      handleMessage: this.handleWsMessage
+    }) as Observable<ChatWSMessage>;
+  }
+
+  handleWsMessage = (message: ChatWSMessage) => {
+    if (!isNewMessage(message)) return;
+
+    if (!isUnreadMessage(message)) {
+      // TODO
+    }
+
+    const newMessage: Message = {
+      id: message.data.id,
+      userFromId: message.data.author,
+      personalChatId: message.data.chat_id,
+      text: message.data.message,
+      createdAt: message.data.created_at,
+      isRead: false,
+      isMine: false
+    };
+    const newDate = this.formatMessageDate(newMessage.createdAt);
+    const currentGroups = [...this.activeChatMessages()];
+
+    const groupIndex = currentGroups.findIndex(group => group.date === newDate);
+
+    if (groupIndex !== -1) {
+      const updatedGroup = {
+        ...currentGroups[groupIndex],
+        messages: [...currentGroups[groupIndex].messages, newMessage]
+      };
+
+      const newGroups = [...currentGroups];
+      newGroups[groupIndex] = updatedGroup;
+
+      this.activeChatMessages.set(newGroups);
+    } else {
+      this.activeChatMessages.set([
+        ...currentGroups,
+        {
+          date: newDate,
+          messages: [newMessage]
+        }
+      ]);
+    }
+  }
 
   private formatMessageDate(date: string): string {
     const standardizedDate = `${date}Z`;
