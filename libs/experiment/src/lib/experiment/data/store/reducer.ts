@@ -20,6 +20,37 @@ export const experimentFeature = createFeature({
 					subscriptions: subscriptions.items
 				}
 			}
+		),
+		on(experimentActions.unsubDispatchedResponse,
+			(state, payload) => {
+				const newSubs = [...state.subscriptions as Profile[]].filter(item => item.id !== payload.id);
+
+				return {
+					subscriptions: newSubs
+				}
+			}
+		)
+	)
+});
+
+export interface TotalSubs {
+	total: number
+}
+
+export const initialTotal: TotalSubs = {
+	total: 0
+}
+
+export const totalSubsFeature = createFeature({
+	name: 'totalSubsFeature',
+	reducer: createReducer(
+		initialTotal,
+		on(experimentActions.totalSubsLoaded,
+			(state, { total }) => {
+				return {
+					total
+				}
+			}
 		)
 	)
 });

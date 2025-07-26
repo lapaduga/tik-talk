@@ -20,4 +20,34 @@ export class ExperimentEffects {
 			map(subscriptions => experimentActions.subsLoaded({ subscriptions }))
 		);
 	});
+
+	total = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(experimentActions.subsLoaded),
+			map(({ subscriptions }) => experimentActions.totalSubsLoaded({ total: subscriptions.total })),
+		);
+	});
+
+	/* 	subAdded = createEffect(() => {
+			return this.actions$.pipe(
+				ofType(experimentActions.subAdded),
+				switchMap(({ id }) => {
+					return this.experimentService.subscribeUser(id);
+				}),
+				map(() => experimentActions.subAddedResponse())
+			);
+		}); */
+
+	userId = 0;
+
+	unsub = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(experimentActions.unsubDispatched),
+			switchMap(({ id }) => {
+				this.userId = id;
+				return this.experimentService.unsubscribeUser(id);
+			}),
+			map(() => experimentActions.unsubDispatchedResponse({ id: this.userId }))
+		);
+	});
 }

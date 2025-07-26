@@ -7,8 +7,10 @@ export const experimentActions = createActionGroup({
 		'fetch subscriptions': emptyProps(),
 		'subs loaded': props<{ subscriptions: Pageable<Profile> }>(),
 		'sub added': props<{ id: number }>(),
-		'sub added response': emptyProps(),
+		'sub added response': props<{ profile: Profile }>(),
 		'unsub dispatched': props<{ id: number }>(),
-		'unsub dispatched response': emptyProps(),
+		'unsub dispatched response': props<{ id: number }>(),
+		'get total subs': emptyProps(),
+		'total subs loaded': props<{ total: number }>(),
 	}
 });

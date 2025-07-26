@@ -14,6 +14,7 @@ import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { postsFeature, PostsEffects } from '@tt/posts';
 import { ExperimentPage, ExperimentEffects, experimentFeature } from '@tt/experiment';
+import { totalSubsFeature } from '../../../../libs/experiment/src/lib/experiment/data/store';
 
 export const routes: Routes = [
   {
@@ -45,7 +46,8 @@ export const routes: Routes = [
         component: ExperimentPage,
         providers: [
           provideState(experimentFeature),
-          provideEffects(ExperimentEffects)
+          provideState(totalSubsFeature),
+          provideEffects(ExperimentEffects),
         ]
       },
     ],

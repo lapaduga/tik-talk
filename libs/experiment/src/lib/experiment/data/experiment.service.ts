@@ -12,9 +12,20 @@ export class ExperimentService {
   me = signal<Profile | null>(null);
   #globalStoreService = inject(GlobalStoreService);
 
-	getSubscriptions() {
-		return this.http.get<Pageable<Profile>>(`${this.baseApiUrl}account/subscriptions/`);
-	}
+  getSubscriptions() {
+    return this.http.get<Pageable<Profile>>(`${this.baseApiUrl}account/subscriptions/`)
+      .pipe(
+        tap(v => console.log('getSubscriptions', v))
+      );
+  }
+
+  subscribeUser(id: number) {
+    return this.http.post(`${this.baseApiUrl}account/subscribe/${id}`, {})
+  }
+
+  unsubscribeUser(id: number) {
+    return this.http.delete(`${this.baseApiUrl}account/subscribe/${id}`)
+  }
 
   getTestAccounts() {
     return this.http.get<Profile[]>(`${this.baseApiUrl}account/test_accounts`);
