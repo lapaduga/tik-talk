@@ -1,3 +1,3 @@
 export * from './services';
 export * from './interfaces';
-export * from './utils/utils';
+export * from './utils/type-guards';

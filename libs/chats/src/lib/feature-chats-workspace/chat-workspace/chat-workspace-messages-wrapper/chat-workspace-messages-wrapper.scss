@@ -14,6 +14,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 .date-label {

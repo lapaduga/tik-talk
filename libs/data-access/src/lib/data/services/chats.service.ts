@@ -39,44 +39,46 @@ export class ChatsService {
   }
 
   handleWsMessage = (message: ChatWSMessage) => {
-    if (!isNewMessage(message)) return;
+    if (!('action' in message)) return;
 
     if (!isUnreadMessage(message)) {
       // TODO
     }
 
-    const newMessage: Message = {
-      id: message.data.id,
-      userFromId: message.data.author,
-      personalChatId: message.data.chat_id,
-      text: message.data.message,
-      createdAt: message.data.created_at,
-      isRead: false,
-      isMine: false
-    };
-    const newDate = this.formatMessageDate(newMessage.createdAt);
-    const currentGroups = [...this.activeChatMessages()];
-
-    const groupIndex = currentGroups.findIndex(group => group.date === newDate);
-
-    if (groupIndex !== -1) {
-      const updatedGroup = {
-        ...currentGroups[groupIndex],
-        messages: [...currentGroups[groupIndex].messages, newMessage]
+    if (message.action === 'message') {
+      const newMessage: Message = {
+        id: message.data.id,
+        userFromId: message.data.author,
+        personalChatId: message.data.chat_id,
+        text: message.data.message,
+        createdAt: message.data.created_at,
+        isRead: false,
+        isMine: false
       };
+      const newDate = this.formatMessageDate(newMessage.createdAt);
+      const currentGroups = [...this.activeChatMessages()];
 
-      const newGroups = [...currentGroups];
-      newGroups[groupIndex] = updatedGroup;
+      const groupIndex = currentGroups.findIndex(group => group.date === newDate);
 
-      this.activeChatMessages.set(newGroups);
-    } else {
-      this.activeChatMessages.set([
-        ...currentGroups,
-        {
-          date: newDate,
-          messages: [newMessage]
-        }
-      ]);
+      if (groupIndex !== -1) {
+        const updatedGroup = {
+          ...currentGroups[groupIndex],
+          messages: [...currentGroups[groupIndex].messages, newMessage]
+        };
+
+        const newGroups = [...currentGroups];
+        newGroups[groupIndex] = updatedGroup;
+
+        this.activeChatMessages.set(newGroups);
+      } else {
+        this.activeChatMessages.set([
+          ...currentGroups,
+          {
+            date: newDate,
+            messages: [newMessage]
+          }
+        ]);
+      }
     }
   }
 
