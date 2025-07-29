@@ -29,6 +29,13 @@ export const experimentFeature = createFeature({
 					subscriptions: newSubs
 				}
 			}
+		),
+		on(experimentActions.subAddedResponse,
+			(state, { profile }) => {
+				return {
+					subscriptions: [...(state.subscriptions as Profile[]), profile]
+				}
+			}
 		)
 	)
 });

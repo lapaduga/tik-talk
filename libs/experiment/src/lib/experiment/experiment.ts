@@ -18,8 +18,13 @@ export class ExperimentPage {
   subscriptions$!: Observable<Profile[]>;
   store = inject(Store);
   totalSubs = 0;
+  profiles: Observable<Profile[]> | null = null;
 
   constructor() {
+    this.profiles = this.experimentService.filterProfiles({})
+      .pipe(
+        map(item => item.items)
+      );
     /*     this.subscriptions$ = this.experimentService.getSubscriptions()
           .pipe(
             map(val => val.items),
@@ -37,11 +42,11 @@ export class ExperimentPage {
       });
   }
 
-  subscribeUser() {
-
+  subscribeUser(profile: Profile) {
+    this.store.dispatch(experimentActions.subAdded({ profile: profile }));
   }
 
   unsubscribeUser(id: number) {
-    this.store.dispatch(experimentActions.unsubDispatched({ id: id }))
+    this.store.dispatch(experimentActions.unsubDispatched({ id: id }));
   }
 }

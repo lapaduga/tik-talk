@@ -6,7 +6,7 @@ export const experimentActions = createActionGroup({
 	events: {
 		'fetch subscriptions': emptyProps(),
 		'subs loaded': props<{ subscriptions: Pageable<Profile> }>(),
-		'sub added': props<{ id: number }>(),
+		'sub added': props<{ profile: Profile }>(),
 		'sub added response': props<{ profile: Profile }>(),
 		'unsub dispatched': props<{ id: number }>(),
 		'unsub dispatched response': props<{ id: number }>(),

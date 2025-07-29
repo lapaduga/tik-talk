@@ -1,7 +1,16 @@
-@for (item of subscriptions$ | async; track $index) {
-	<div>{{ item.firstName }}</div><!-- 
-	<button class="btn" (click)="subscribeUser(item.id)">+</button> -->
-	<button class="btn" (click)="unsubscribeUser(item.id)">-</button>
-}
-
-<div>Total Subscriptions: {{ totalSubs }}</div>
+<div class="grid two-columns">
+	<div>
+		@for (item of subscriptions$ | async; track $index) {
+			<div>{{ item.firstName }}</div><!-- 
+			<button class="btn" (click)="subscribeUser(item.id)">+</button> -->
+			<button class="btn" (click)="unsubscribeUser(item.id)">-</button>
+		}
+	</div>
+	<div>
+		@for (item of profiles | async; track item.id) {
+			<div>{{ item.firstName }}</div>
+			<button class="btn" (click)="subscribeUser(item)">+</button>
+			<button class="btn" (click)="unsubscribeUser(item.id)">-</button>
+		}
+	</div>
+</div>

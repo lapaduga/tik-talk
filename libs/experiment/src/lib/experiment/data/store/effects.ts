@@ -3,6 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ExperimentService } from '../experiment.service';
 import { experimentActions } from './actions';
+import { Profile } from '@tt/data-access';
 
 @Injectable({
 	providedIn: 'root'
@@ -28,15 +29,18 @@ export class ExperimentEffects {
 		);
 	});
 
-	/* 	subAdded = createEffect(() => {
-			return this.actions$.pipe(
-				ofType(experimentActions.subAdded),
-				switchMap(({ id }) => {
-					return this.experimentService.subscribeUser(id);
-				}),
-				map(() => experimentActions.subAddedResponse())
-			);
-		}); */
+	tmpProfile!: Profile;
+
+	subAdded = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(experimentActions.subAdded),
+			switchMap(({ profile }) => {
+				this.tmpProfile = profile;
+				return this.experimentService.subscribeUser(profile.id);
+			}),
+			map(() => experimentActions.subAddedResponse({ profile: this.tmpProfile }))
+		);
+	});
 
 	userId = 0;
 
