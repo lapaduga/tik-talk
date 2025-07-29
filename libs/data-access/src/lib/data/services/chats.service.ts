@@ -9,7 +9,7 @@ import {
 import { map, Observable } from 'rxjs';
 import { format, isToday, isYesterday } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { AuthService, isNewMessage, ProfileService } from '../';
+import { AuthService, ProfileService } from '../';
 import { ChatWsServiceInterface } from '../interfaces/chat-ws-service.interface';
 // import { ChatsWsNativeService } from './chats-ws-native.service';
 import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
@@ -41,7 +41,7 @@ export class ChatsService {
   handleWsMessage = (message: ChatWSMessage) => {
     if (!('action' in message)) return;
 
-    if (!isUnreadMessage(message)) {
+    if (isUnreadMessage(message)) {
       // TODO
     }
 
