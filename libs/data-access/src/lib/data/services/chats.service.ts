@@ -9,11 +9,10 @@ import {
 import { map, Observable } from 'rxjs';
 import { format, isToday, isYesterday } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { AuthService, ProfileService } from '../';
+import { AuthService, isNewMessage, ProfileService, isUnreadMessage } from '../';
 import { ChatWsServiceInterface } from '../interfaces/chat-ws-service.interface';
 // import { ChatsWsNativeService } from './chats-ws-native.service';
 import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
-import { isUnreadMessage } from '../';
 import { ChatWSRxJsService } from './chat-ws-rxjs';
 
 @Injectable({
@@ -29,6 +28,7 @@ export class ChatsService {
   activeChatMessages = signal<GroupedMessages[]>([]);
   // wsAdapter: ChatWsServiceInterface = new ChatsWsNativeService();
   wsAdapter: ChatWsServiceInterface = new ChatWSRxJsService();
+  unreadMessagesCount = signal(0);
 
   connectWs() {
     return this.wsAdapter.connect({
@@ -41,11 +41,11 @@ export class ChatsService {
   handleWsMessage = (message: ChatWSMessage) => {
     if (!('action' in message)) return;
 
-    if (isUnreadMessage(message)) {
-      // TODO
+    if(isUnreadMessage(message)) {
+      this.unreadMessagesCount.set(message.data.count);
     }
 
-    if (message.action === 'message') {
+    if (isNewMessage(message)) {
       const newMessage: Message = {
         id: message.data.id,
         userFromId: message.data.author,

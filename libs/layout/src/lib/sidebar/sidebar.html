@@ -10,6 +10,9 @@
       >
         <svg [icon]="menuItem.icon" class="svg-icon"></svg>
         <span>{{ menuItem.label }}</span>
+        @if (menuItem.showCount && unreadMessagesCount() > 0) {
+          <span>{{ unreadMessagesCount() }}</span>
+        }
       </a>
     </li>
   </ul>
