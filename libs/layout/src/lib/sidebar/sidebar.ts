@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { NgFor, AsyncPipe } from '@angular/common';
 import { SubscriberCard } from './subscriber-card/subscriber-card';
 import { RouterModule } from '@angular/router';
@@ -20,7 +20,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar {
+export class Sidebar implements OnInit {
   profileService = inject(ProfileService);
   chatService = inject(ChatsService);
   destroyRef = inject(DestroyRef);
@@ -50,17 +50,17 @@ export class Sidebar {
     },
   ];
 
-  constructor() {
+  ngOnInit() {
     firstValueFrom(this.profileService.getMe());
-    // this.connectWs();
-    this.chatService.connectWs()
+    this.connectWs();
+/*     this.chatService.connectWs()
       .pipe(
         takeUntilDestroyed()
       )
-      .subscribe();
+      .subscribe(); */
   }
 
-  /*   async reconnect() {
+    async reconnect() {
       console.log('Соединение...');
       await firstValueFrom(this.profileService.getMe());
       await firstValueFrom(timer(2000));
@@ -79,5 +79,5 @@ export class Sidebar {
             this.reconnect();
           }
         });
-    } */
+    }
 }
