@@ -1,5 +1,5 @@
 import { AvatarCircleComponent } from '@tt/common-ui';
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Profile } from '@tt/data-access';
 
 @Component({
@@ -7,6 +7,7 @@ import { Profile } from '@tt/data-access';
   imports: [AvatarCircleComponent],
   templateUrl: './chat-workspace-header.html',
   styleUrl: './chat-workspace-header.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceHeader {
   profile = input.required<Profile>();

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -20,6 +20,7 @@ import { ProfileHeader } from '../../ui/profile-header/profile-header';
   ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePage {
   profileService = inject(ProfileService);

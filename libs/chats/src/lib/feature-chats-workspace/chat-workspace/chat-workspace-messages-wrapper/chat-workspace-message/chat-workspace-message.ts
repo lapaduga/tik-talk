@@ -1,5 +1,6 @@
 import { AvatarCircleComponent } from '@tt/common-ui';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostBinding,
@@ -15,6 +16,7 @@ import { Message } from '@tt/data-access';
   imports: [AvatarCircleComponent, DatePipe],
   templateUrl: './chat-workspace-message.html',
   styleUrl: './chat-workspace-message.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceMessage implements OnChanges {
   message = input.required<Message>();

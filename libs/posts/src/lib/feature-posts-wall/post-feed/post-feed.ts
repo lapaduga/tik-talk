@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, Renderer2, AfterViewInit, Signal, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, Renderer2, AfterViewInit, Signal, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { fromEvent, debounceTime } from 'rxjs';
 import { PostInputComponent } from '../../ui';
 import { PostComponent } from '../post/post.component';
@@ -11,6 +11,7 @@ import { postsActions, selectPosts } from '../../store';
   imports: [PostInputComponent, PostComponent],
   templateUrl: './post-feed.html',
   styleUrl: './post-feed.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostFeed implements AfterViewInit, OnInit {
   postService = inject(PostService);

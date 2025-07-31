@@ -1,5 +1,5 @@
 import { firstValueFrom } from 'rxjs';
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from '@angular/core';
 import { Post, PostComment, PostService, ProfileService } from '@tt/data-access';
 import { AvatarCircleComponent, SvgIconComponent, TimePassedSincePipe } from '@tt/common-ui';
 import { CommentComponent, PostInputComponent } from '../../ui';
@@ -15,6 +15,7 @@ import { CommentComponent, PostInputComponent } from '../../ui';
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostComponent implements OnInit {
   post = input<Post>();

@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { ProfileCard } from '../../ui/index';
 import { ProfileFilters } from '../index';
 import { Store } from '@ngrx/store';
@@ -9,6 +9,7 @@ import { profileActions, selectFilteredProfiles, selectProfileFilters } from '..
   imports: [ProfileCard, ProfileFilters],
   templateUrl: './search-page.html',
   styleUrl: './search-page.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchPage {
   store = inject(Store);

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { NgFor, AsyncPipe } from '@angular/common';
 import { SubscriberCard } from './subscriber-card/subscriber-card';
 import { RouterModule } from '@angular/router';
@@ -19,6 +19,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Sidebar implements OnInit {
   profileService = inject(ProfileService);
@@ -53,31 +54,31 @@ export class Sidebar implements OnInit {
   ngOnInit() {
     firstValueFrom(this.profileService.getMe());
     this.connectWs();
-/*     this.chatService.connectWs()
-      .pipe(
-        takeUntilDestroyed()
-      )
-      .subscribe(); */
+    /*     this.chatService.connectWs()
+          .pipe(
+            takeUntilDestroyed()
+          )
+          .subscribe(); */
   }
 
-    async reconnect() {
-      console.log('Соединение...');
-      await firstValueFrom(this.profileService.getMe());
-      await firstValueFrom(timer(2000));
-      this.connectWs();
-    }
-  
-    connectWs(): void {
-      this.wsSubscribe?.unsubscribe();
-      this.wsSubscribe = this.chatService.connectWs()
-        .pipe(
-          takeUntilDestroyed(this.destroyRef)
-        )
-        .subscribe(message => {
-          if (isErrorMessage(message)) {
-            console.log('Неверный токен');
-            this.reconnect();
-          }
-        });
-    }
+  async reconnect() {
+    console.log('Соединение...');
+    await firstValueFrom(this.profileService.getMe());
+    await firstValueFrom(timer(2000));
+    this.connectWs();
+  }
+
+  connectWs(): void {
+    this.wsSubscribe?.unsubscribe();
+    this.wsSubscribe = this.chatService.connectWs()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(message => {
+        if (isErrorMessage(message)) {
+          console.log('Неверный токен');
+          this.reconnect();
+        }
+      });
+  }
 }

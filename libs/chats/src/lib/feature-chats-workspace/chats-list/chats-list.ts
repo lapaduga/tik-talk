@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ChatsBtn } from '../chats-btn/chats-btn';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -17,6 +17,7 @@ import { ChatsService } from '@tt/data-access';
   ],
   templateUrl: './chats-list.html',
   styleUrl: './chats-list.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatsList {
   chatsService = inject(ChatsService);

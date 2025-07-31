@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   inject,
@@ -15,6 +16,7 @@ import { GlobalStoreService } from '@tt/data-access';
   imports: [AvatarCircleComponent, NgIf, SvgIconComponent, FormsModule],
   templateUrl: './post-input.html',
   styleUrl: './post-input.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostInput {
   r2 = inject(Renderer2);
