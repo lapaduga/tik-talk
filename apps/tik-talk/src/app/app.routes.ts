@@ -48,6 +48,8 @@ export const routes: Routes = [
           provideState(experimentFeature),
           provideState(totalSubsFeature),
           provideEffects(ExperimentEffects),
+          provideState(profileFeature),
+          provideEffects(ProfileEffects)
         ]
       },
     ],

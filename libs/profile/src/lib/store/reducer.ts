@@ -31,6 +31,34 @@ export const profileFeature = createFeature({
 					profileFilters: filters
 				};
 			}
+		),
+		on(
+			profileActions.profileChangedAfterSubscription,
+			(state, { profile }) => {
+				const profiles = [...state.profiles];
+				const index = profiles.findIndex(item => item.id === profile.id);
+				const actualProfile = { ...profiles[index], isSubscribed: true };
+				profiles[index] = actualProfile;
+				console.log(profiles);
+				return {
+					...state,
+					profiles: profiles
+				}
+			}
+		),
+		on(
+			profileActions.profileChangedAfterSubscriptionCancelled,
+			(state, { profile }) => {
+				const profiles = [...state.profiles];
+				const index = profiles.findIndex(item => item.id === profile.id);
+				const actualProfile = { ...profiles[index], isSubscribed: false };
+				profiles[index] = actualProfile;
+				console.log(profiles);
+				return {
+					...state,
+					profiles: profiles
+				}
+			}
 		)
 	)
 });

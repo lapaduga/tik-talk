@@ -6,5 +6,7 @@ export const profileActions = createActionGroup({
 	events: {
 		'filter events': props<{ filters: Record<string, any> }>(),
 		'profiles loaded': props<{ profiles: Profile[] }>(),
+		'profile changed after subscription': props<{ profile: Profile }>(),
+		'profile changed after subscription cancelled': props<{ profile: Profile }>(),
 	}
 });
