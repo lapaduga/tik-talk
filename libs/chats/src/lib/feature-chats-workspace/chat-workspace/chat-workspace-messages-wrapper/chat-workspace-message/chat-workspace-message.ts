@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 import { Message } from '@tt/data-access';
 
 @Component({
-  selector: 'app-chat-workspace-message',
+  selector: 'tt-chat-workspace-message',
   imports: [AvatarCircleComponent, DatePipe],
   templateUrl: './chat-workspace-message.html',
   styleUrl: './chat-workspace-message.scss',

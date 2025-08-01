@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@tt/data-access';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'tt-login-page',
   imports: [ReactiveFormsModule],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',

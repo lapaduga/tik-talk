@@ -1,8 +1,8 @@
 @if (post(); as post) {
-<app-avatar-circle
+<tt-avatar-circle
   class="size-32"
   [avatarUrl]="post.author.avatarUrl"
-></app-avatar-circle>
+></tt-avatar-circle>
 
 <main class="post-body">
   <div class="post-header">
@@ -23,9 +23,9 @@
   </div>
   <div class="post-comment-wrapper">
     @for (comment of comments(); track comment.id) {
-    <app-comment [comment]="comment"></app-comment>
+    <tt-comment [comment]="comment"></tt-comment>
     }
   </div>
-  <app-post-input (created)="onCreated($event)"></app-post-input>
+  <tt-post-input (created)="onCreated($event)"></tt-post-input>
 </main>
 }

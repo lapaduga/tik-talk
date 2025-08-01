@@ -8,7 +8,7 @@ import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'tt-sidebar',
   imports: [
     SvgIconComponent,
     NgFor,

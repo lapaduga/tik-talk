@@ -3,7 +3,7 @@ import { AvatarCircleComponent, TimePassedSincePipe } from '@tt/common-ui';
 import { PostComment } from '@tt/data-access';
 
 @Component({
-  selector: 'app-comment',
+  selector: 'tt-comment',
   imports: [AvatarCircleComponent, TimePassedSincePipe],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.scss',

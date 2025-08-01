@@ -5,7 +5,7 @@ import { AvatarCircleComponent, SvgIconComponent, TimePassedSincePipe } from '@t
 import { CommentComponent, PostInputComponent } from '../../ui';
 
 @Component({
-  selector: 'app-post',
+  selector: 'tt-post',
   imports: [
     AvatarCircleComponent,
     SvgIconComponent,

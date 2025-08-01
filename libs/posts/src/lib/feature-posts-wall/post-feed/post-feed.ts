@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { postsActions, selectPosts } from '../../store';
 
 @Component({
-  selector: 'app-post-feed',
+  selector: 'tt-post-feed',
   imports: [PostInputComponent, PostComponent],
   templateUrl: './post-feed.html',
   styleUrl: './post-feed.scss',

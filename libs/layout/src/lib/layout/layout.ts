@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Sidebar } from '../sidebar/sidebar';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'tt-layout',
   imports: [RouterOutlet, Sidebar],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',

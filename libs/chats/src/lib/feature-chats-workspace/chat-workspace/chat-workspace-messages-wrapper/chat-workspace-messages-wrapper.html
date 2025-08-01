@@ -5,16 +5,16 @@
   </div>
 
   @for (item of message.messages; track item.id) {
-  <app-chat-workspace-message [message]="item"></app-chat-workspace-message>
+  <tt-chat-workspace-message [message]="item"></tt-chat-workspace-message>
   } }
 </div>
 
 <!-- <div class="messages-wrapper">
 	@for (message of messages(); track message.id) {
-		<app-chat-workspace-message
+		<tt-chat-workspace-message
 			[message]="message"
-		></app-chat-workspace-message>
+		></tt-chat-workspace-message>
 	}
 </div>  -->
 
-<app-message-input (created)="onSendMessage($event)"></app-message-input>
+<tt-message-input (created)="onSendMessage($event)"></tt-message-input>

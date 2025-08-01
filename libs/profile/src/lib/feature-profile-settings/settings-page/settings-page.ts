@@ -6,7 +6,7 @@ import { AvatarUpload } from '../../ui/avatar-upload/avatar-upload';
 import { ProfileHeader } from '../../ui/profile-header/profile-header';
 
 @Component({
-  selector: 'app-settings-page',
+  selector: 'tt-settings-page',
   standalone: true,
   imports: [ProfileHeader, ReactiveFormsModule, AvatarUpload],
   templateUrl: './settings-page.html',

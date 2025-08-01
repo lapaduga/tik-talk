@@ -5,7 +5,7 @@ import { MessageInput } from '../../../ui';
 import { Chat, ChatsService } from '@tt/data-access';
 
 @Component({
-  selector: 'app-chat-workspace-messages-wrapper',
+  selector: 'tt-chat-workspace-messages-wrapper',
   imports: [ChatWorkspaceMessage, MessageInput],
   templateUrl: './chat-workspace-messages-wrapper.html',
   styleUrl: './chat-workspace-messages-wrapper.scss',

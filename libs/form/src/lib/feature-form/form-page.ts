@@ -70,7 +70,7 @@ function validateDateRange({
 }
 
 @Component({
-  selector: 'app-form',
+  selector: 'tt-form',
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './form-page.html',
   styleUrl: './form-page.scss',

@@ -1,6 +1,6 @@
 @if (profile$ | async; as profile) {
 <header class="profile-page__header">
-  <app-profile-header [profile]="profile"></app-profile-header>
+  <tt-profile-header [profile]="profile"></tt-profile-header>
 
   @if(isMyPage()) {
   <div class="grid gap-16">
@@ -24,7 +24,7 @@
 </header>
 
 <main class="profile-page__body">
-  <app-post-feed></app-post-feed>
+  <tt-post-feed></tt-post-feed>
   <div>
     <h3 class="h6 mb-16">Пдписчики</h3>
     <div class="subscribers-wrapper mb-32">

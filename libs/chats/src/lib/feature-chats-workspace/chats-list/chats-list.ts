@@ -7,7 +7,7 @@ import { map, startWith, switchMap } from 'rxjs';
 import { ChatsService } from '@tt/data-access';
 
 @Component({
-  selector: 'app-chats-list',
+  selector: 'tt-chats-list',
   imports: [
     ChatsBtn,
     AsyncPipe,

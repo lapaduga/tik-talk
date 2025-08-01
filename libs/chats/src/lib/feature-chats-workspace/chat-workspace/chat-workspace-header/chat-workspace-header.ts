@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Profile } from '@tt/data-access';
 
 @Component({
-  selector: 'app-chat-workspace-header',
+  selector: 'tt-chat-workspace-header',
   imports: [AvatarCircleComponent],
   templateUrl: './chat-workspace-header.html',
   styleUrl: './chat-workspace-header.scss',

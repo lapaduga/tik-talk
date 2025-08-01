@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Profile } from '@tt/data-access';
 
 @Component({
-  selector: 'app-profile-header',
+  selector: 'tt-profile-header',
   imports: [AvatarCircleComponent],
   templateUrl: './profile-header.html',
   styleUrl: './profile-header.scss',

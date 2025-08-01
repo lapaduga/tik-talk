@@ -3,7 +3,7 @@ import { ImgUrlPipe } from '@tt/common-ui';
 import { Profile } from '@tt/data-access';
 
 @Component({
-  selector: 'app-profile-card',
+  selector: 'tt-profile-card',
   imports: [ImgUrlPipe],
   standalone: true,
   templateUrl: './profile-card.html',

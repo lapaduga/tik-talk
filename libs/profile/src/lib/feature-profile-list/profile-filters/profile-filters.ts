@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { profileActions, selectProfileFilters } from '../../store';
 
 @Component({
-  selector: 'app-profile-filters',
+  selector: 'tt-profile-filters',
   imports: [ReactiveFormsModule],
   templateUrl: './profile-filters.html',
   styleUrl: './profile-filters.scss',

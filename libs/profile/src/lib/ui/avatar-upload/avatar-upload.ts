@@ -4,7 +4,7 @@ import { Dnd } from '@tt/common-ui';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-avatar-upload',
+  selector: 'tt-avatar-upload',
   imports: [SvgIconComponent, Dnd, FormsModule],
   templateUrl: './avatar-upload.html',
   styleUrl: './avatar-upload.scss',

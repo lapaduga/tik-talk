@@ -12,7 +12,7 @@ import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/data-access';
 
 @Component({
-  selector: 'app-post-input',
+  selector: 'tt-post-input',
   imports: [AvatarCircleComponent, NgIf, SvgIconComponent, FormsModule],
   templateUrl: './post-input.html',
   styleUrl: './post-input.scss',
