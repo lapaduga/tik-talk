@@ -22,7 +22,7 @@ export class ChatsService {
   http = inject(HttpClient);
   #authService = inject(AuthService);
   me = inject(ProfileService).me;
-  baseApiUrl = 'https://icherniakov.ru/yt-course/';
+  baseApiUrl = '/yt-course/';
   chatsUrl = `${this.baseApiUrl}chat/`;
   messageUrl = `${this.baseApiUrl}message/`;
   activeChatMessages = signal<GroupedMessages[]>([]);

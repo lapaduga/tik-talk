@@ -12,7 +12,7 @@ import { Profile } from '@tt/data-access';
   providedIn: 'root',
 })
 export class NameValidator implements AsyncValidator {
-  baseApiUrl = 'https://icherniakov.ru/yt-course/account/test_accounts';
+  baseApiUrl = '/yt-course/account/test_accounts';
   http = inject(HttpClient);
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
