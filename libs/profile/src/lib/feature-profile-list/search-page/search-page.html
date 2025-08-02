@@ -4,14 +4,11 @@
   @for (profile of profiles(); track profile.id; let last = $last) {
     @if (last) {
       @defer (on viewport) {
-        <tt-infinite-scroll-trigger
-          (loaded)="timeToFetch()"
-        ></tt-infinite-scroll-trigger>
+        <tt-infinite-scroll-trigger (loaded)="timeToFetch()"></tt-infinite-scroll-trigger>
       } @placeholder {
         <div></div>
       }
     }
-
     <tt-profile-card [profile]="profile"></tt-profile-card>
   }
 </div>
