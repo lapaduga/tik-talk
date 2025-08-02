@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy/* , OnInit */ } from '@angular/core';
 import { ProfileCard } from '../../ui/index';
 import { ProfileFilters } from '../index';
 import { Store } from '@ngrx/store';
@@ -6,8 +6,8 @@ import { profileActions, selectFilteredProfiles, selectProfileFilters } from '..
 import { InfiniteScrollTrigger } from '@tt/common-ui';
 // import { WaIntersectionObserver, WaIntersectionObservee } from '@ng-web-apis/intersection-observer';
 // import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
-import { firstValueFrom, scan, Subject } from 'rxjs';
-import { Profile, ProfileService } from '@tt/data-access';
+// import { firstValueFrom, scan, Subject } from 'rxjs';
+// import { Profile, ProfileService } from '@tt/data-access';
 
 @Component({
   selector: 'tt-search-page',
