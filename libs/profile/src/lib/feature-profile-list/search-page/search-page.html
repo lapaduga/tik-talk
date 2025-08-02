@@ -2,8 +2,6 @@
 
 <div class="profile-card__wrapper">
   @for (profile of profiles(); track profile.id; let last = $last) {
-    <tt-profile-card [profile]="profile"></tt-profile-card>
-
     @if (last) {
       @defer (on viewport) {
         <tt-infinite-scroll-trigger
@@ -13,5 +11,7 @@
         <div></div>
       }
     }
+
+    <tt-profile-card [profile]="profile"></tt-profile-card>
   }
 </div>
