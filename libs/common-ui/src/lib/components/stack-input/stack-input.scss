@@ -1,0 +1,51 @@
+.stack-control {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	border-bottom: 1px solid var(--light-color);
+	background-color: var(--dark-color);
+	padding: 10px 0;
+}
+
+.stack-tag {
+	font-weight: 700;
+	line-height: 1.34;
+	font-size: 12px;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border: 1px solid var(--light-color);
+	padding: 4px 10px;
+	color: var(--light-color);
+	border-radius: 2px;
+	cursor: pointer;
+
+	&__delete {
+		color: inherit;
+	}
+}
+
+.stack-ghost-input {
+	font-family: inherit;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.43;
+	background: none;
+	border: none;
+	padding: 2px;
+	color: var(--light-color);
+	outline: none;
+	flex: 1 1 auto;
+
+	&::placeholder {
+		color: color-mix(in oklab, var(--light-color), transparent 25%);
+	}
+}
+
+:host.disabled {
+	.stack-control {
+		pointer-events: none;
+		opacity: 0.5;
+	}
+}

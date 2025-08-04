@@ -4,11 +4,12 @@ import { firstValueFrom } from 'rxjs';
 import { ProfileService } from '@tt/data-access';
 import { AvatarUpload } from '../../ui/avatar-upload/avatar-upload';
 import { ProfileHeader } from '../../ui/profile-header/profile-header';
+import { StackInput } from '@tt/common-ui';
 
 @Component({
   selector: 'tt-settings-page',
   standalone: true,
-  imports: [ProfileHeader, ReactiveFormsModule, AvatarUpload],
+  imports: [ProfileHeader, ReactiveFormsModule, AvatarUpload, StackInput],
   templateUrl: './settings-page.html',
   styleUrl: './settings-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -24,15 +25,14 @@ export class SettingsPage {
     lastName: ['', Validators.required],
     username: [{ value: '', disabled: true }, Validators.required],
     description: [''],
-    stack: [''],
+    stack: [{ value: '', disabled: false }],
   });
 
   constructor() {
     effect(() => {
+      //@ts-ignore
       this.form.patchValue({
-        ...this.profileService.me(),
-        //@ts-ignore
-        stack: this.mergeStack(this.profileService.me()?.stack),
+        ...this.profileService.me()
       });
     });
   }
@@ -49,29 +49,11 @@ export class SettingsPage {
       );
     }
 
-    //@ts-ignore
     firstValueFrom(
       // @ts-ignore
       this.profileService.patchProfile({
-        ...this.form.value,
-        stack: this.splitStack(this.form.value.stack),
+        ...this.form.value
       })
     );
-  }
-
-  splitStack(stack: string | null | string[] | undefined) {
-    if (!stack) return [];
-
-    if (Array.isArray(stack)) return stack;
-
-    return stack.split(',');
-  }
-
-  mergeStack(stack: string | null | [] | undefined) {
-    if (!stack) return '';
-
-    if (Array.isArray(stack)) return stack.join(',');
-
-    return stack;
   }
 }
