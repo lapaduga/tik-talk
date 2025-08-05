@@ -5,6 +5,7 @@ import { GlobalStoreService } from "./global-store.service";
 import { MockService } from "./mock.service";
 import { PostService } from "./post.service";
 import { ProfileService } from "./profile.service";
+import { DadataService } from "./dadata.service";
 
 export {
 	AuthService,
@@ -13,5 +14,6 @@ export {
 	MockService,
 	PostService,
 	ProfileService,
-	ChatsWsNativeService
+	ChatsWsNativeService,
+	DadataService
 }

@@ -1,3 +1,4 @@
+import { AddressInput } from "./address-input/address-input";
 import { AvatarCircle } from "./avatar-circle/avatar-circle";
 import { InfiniteScrollTrigger } from "./infinite-scroll-trigger/infinite-scroll-trigger";
 import { StackInput } from "./stack-input/stack-input";
@@ -9,5 +10,6 @@ export {
 	SvgIcon as SvgIconComponent,
 	InfiniteScrollTrigger,
 	TtInput,
-	StackInput
+	StackInput,
+	AddressInput
 }

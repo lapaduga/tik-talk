@@ -1,0 +1,26 @@
+.suggestions-dropdown {
+	position: absolute;
+	top: calc(100% + 4px);
+	width: 100%;
+	padding: 8px;
+	background-color: var(--dark-color);
+	border-radius: 2px;
+	border: 1px solid var(--light-color);
+	color: var(--light-color);
+	display: grid;
+	gap: 4px;
+}
+
+.suggest-btn {
+	color: inherit;
+	text-align: left;
+	padding: 4px 8px;
+	border-radius: 2px;
+
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: var(--primary-color);
+			color: var(--dark-color);
+		}
+	}
+}

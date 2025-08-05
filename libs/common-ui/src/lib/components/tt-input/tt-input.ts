@@ -1,5 +1,5 @@
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { ChangeDetectionStrategy, Component, forwardRef, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,6 +20,7 @@ export class TtInput implements ControlValueAccessor {
   type = input<'text' | 'password'>('text');
   placeholder = input<string>();
   disabled = signal<boolean>(false);
+  cdr = inject(ChangeDetectorRef);
   
   value: string | null = null;
 
@@ -28,6 +29,7 @@ export class TtInput implements ControlValueAccessor {
 
   writeValue(val: string | null): void {
     this.value = val;
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: any): void {
@@ -44,5 +46,6 @@ export class TtInput implements ControlValueAccessor {
 
   onModelChange(value: string | null): void {
     this.onChange(value);
+    this.cdr.markForCheck();
   }
 }

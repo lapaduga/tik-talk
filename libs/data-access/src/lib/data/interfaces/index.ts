@@ -1,5 +1,6 @@
 import { TokenResponse } from "./auth.interface";
 import { Chat, Message, LastMessageRes, GroupedMessages } from "./chats.interface";
+import { DadataSuggestion } from "./dadata.interface";
 import { Address, Feature } from "./form.interface";
 import { Pageable } from "./pageable.interface";
 import { PostCreateDto, Post, PostComment, CommentCreateDto } from "./post.interface";
@@ -18,7 +19,8 @@ export type {
 	Post,
 	PostComment,
 	CommentCreateDto,
-	Profile
+	Profile,
+	DadataSuggestion
 }
 
 export * from "./chat-ws-message.interface";
